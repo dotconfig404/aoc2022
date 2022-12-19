@@ -18,7 +18,6 @@ while (char := f.read(1)):
             marker_positions.append(marker_end)
 
         for d in marker[i+1:]:
-            print(i,c,d,marker)
             if c == d:
                 not_marker = True
 
@@ -48,7 +47,6 @@ while (char := f.read(1)):
             marker_positions.append(marker_end)
 
         for d in marker[i+1:]:
-            print(i,c,d,marker)
             if c == d:
                 not_marker = True
 
