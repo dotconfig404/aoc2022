@@ -1,0 +1,73 @@
+# part 1
+f = open('input', 'r')
+forest = []
+while (line := f.readline()):
+    row = [int(c) for c in line if c.isnumeric()]
+    forest.append(row)
+f.close()
+
+left = []
+right = []
+for y, row in enumerate(forest):
+
+# from left
+    prev_t = -1
+    for x, t in enumerate(row):
+        if t > prev_t:
+            left.append((x,y))
+            prev_t = t
+
+# from right
+    prev_t = -1
+    for x, t in enumerate(reversed(row)):
+        if t > prev_t:
+            right.append((98-x,y))
+            prev_t = t
+
+
+total = left + right
+
+# transposing
+forest = [[row[n] for row in forest] for n, _ in enumerate(forest)]
+
+left = []
+right = []
+for y, row in enumerate(forest):
+
+# from left
+    prev_t = -1
+    for x, t in enumerate(row):
+        if t > prev_t:
+            left.append((y,x))
+            prev_t = t
+
+# from right
+    prev_t = -1
+    for x, t in enumerate(reversed(row)):
+        if t > prev_t:
+            right.append((y,98-x))
+            prev_t = t
+
+total = total + left + right
+print(len(set(total)))
+
+# part 2, using the transposed forest
+scores = [[[0] for _ in forest] for _ in forest]
+
+for x, row in enumerate(forest):
+
+    # looking to the left (which is actually upwards)
+    for y in range(len(row)):
+        if x > 0:
+            continue
+        print(forest[x][y])
+
+    """
+        for i in range(x,-1,-1):
+            print(forest[y][x],i,x,y)
+            if forest[y][x] > forest[y][i]:
+                scores[y][x] = scores[y][x] + 1
+                """
+
+print(len(scores[0]))
+
