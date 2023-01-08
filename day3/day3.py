@@ -7,10 +7,7 @@ with open("input") as f:
         compartment2 = line[len(line)//2:len(line)]
         for item in compartment1:
             if item in compartment2:
-                if item.islower():
-                    sum = sum + ord(item) - 96
-                else:
-                    sum = sum + ord(item) - 64 + 26
+                sum += (ord(item) - 96) % 58
                 break
     print(sum)
 
@@ -26,7 +23,7 @@ with open("input") as f:
     while (line := f.readline()):
         group_counter = group_counter + 1
         group.append(line)
-        
+
         if group_counter % 3 == 0:
             for item in group[0]:
                 if item in group[1]:
@@ -35,10 +32,7 @@ with open("input") as f:
                         group = []
                         group_counter = 0
                         break
-    
+
     for badge in badges:
-        if badge.islower():
-            sum = sum + ord(badge) - 96
-        else:
-            sum = sum + ord(badge) - 64 + 26
+        sum += (ord(badge) - 96) % 58
     print(sum)
