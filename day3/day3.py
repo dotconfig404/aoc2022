@@ -3,8 +3,8 @@
 with open("input") as f:
     sum = 0
     while (line := f.readline()):
-        compartment1 = line[0:len(line)//2]
-        compartment2 = line[len(line)//2:len(line)]
+        compartment1 = line[:len(line)//2]
+        compartment2 = line[len(line)//2:]
         for item in compartment1:
             if item in compartment2:
                 sum += (ord(item) - 96) % 58
