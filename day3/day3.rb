@@ -30,4 +30,34 @@ end
 
 p sum
 
+# part 2
 
+def find_common(input1, input2)
+  items = "" 
+  input1.each_char do |i1| 
+    input2.each_char do |i2|
+      if i1 == i2
+        items += i1
+        break
+      end
+    end
+  end
+  return items
+end 
+
+sum = 0
+prev_line = ""
+possible_badges = ""
+
+File.foreach('input').with_index  do |line, i|
+  if i % 3 == 0
+    prev_line = line.chomp
+  elsif i % 3 == 1
+    possible_badges = find_common(prev_line, line)
+  else
+    badge = find_common(possible_badges, line)[0]
+    sum += (badge.ord - 96) % 58
+  end
+end
+
+p sum
